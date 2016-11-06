@@ -36,8 +36,8 @@ class Application:
 
     def open_group_page(self):
         wd = self.wd
-        #wait = ui.WebDriverWait(wd, 10)
-        #wait.until(lambda driver: driver.find_element_by_link_text('groups'))
+        wait = ui.WebDriverWait(wd, 10)
+        wait.until(lambda driver: driver.find_element_by_link_text('groups'))
         wd.find_element_by_link_text("groups").click()
         print("found element 'groups'")
 
