@@ -1,24 +1,38 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 import selenium.webdriver.support.ui as ui
 
+
 class Application:
 
     def __init__(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(60)
+        self.wait = ui.WebDriverWait(self.wd, 10)
 
-    def logout(self):
+    def home_page(self):
         wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+        wd.get("http://localhost/addressbook/")
 
-    def return_to_group_page(self):
+    def login(self, username, password):
         wd = self.wd
-        wd.find_element_by_link_text("group page").click()
+        self.home_page()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(username)
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(password)
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+
+    def open_group_page(self):
+        wd = self.wd
+        wait = ui.WebDriverWait(wd, 10)
+        wait.until(lambda driver: driver.find_element_by_link_text('groups'))
+        wd.find_element_by_link_text("groups").click()
+        print("found element 'groups'")
 
     def create_group(self, group):
         print("create_group")
         wd = self.wd
-        print("before open_group_page")
+        #before open_group_page
         self.open_group_page()
         # unit group creation
         print("looking for element 'new'")
@@ -34,25 +48,39 @@ class Application:
         wd.find_element_by_name("submit").click()
         self.return_to_group_page()
 
-    def open_group_page(self):
+    def return_to_group_page(self):
         wd = self.wd
-        wait = ui.WebDriverWait(wd, 10)
-        wait.until(lambda driver: driver.find_element_by_link_text('groups'))
-        wd.find_element_by_link_text("groups").click()
-        print("found element 'groups'")
+        wd.find_element_by_link_text("group page").click()
 
-    def login(self, username, password):
+    def open_contact_page(self):
         wd = self.wd
-        self.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        self.wait.until(lambda driver: driver.find_element_by_link_text('add new'))
+        wd.find_element_by_link_text("add new").click()
 
-    def open_home_page(self):
+    def creating_contact(self, contact):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        self.open_contact_page()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact.address)
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email)
+
+        wd.find_element_by_xpath("//div[@id='content']/form/select[1]").send_keys(contact.birth_day)
+        wd.find_element_by_xpath("//div[@id='content']/form/select[2]").send_keys(contact.birth_month)
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
+        wd.find_element_by_name("submit").click()
+        self.wait.until(lambda driver: driver.find_element_by_name('searchstring'))
+
+    def logout(self):
+        wd = self.wd
+        wd.find_element_by_link_text("Logout").click()
 
     def destroy(self):
         self.wd.quit()
