@@ -23,7 +23,6 @@ class ContactHelper:
         wd.find_element_by_name("mobile").send_keys(contact.mobile)
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contact.email)
-
         wd.find_element_by_xpath("//div[@id='content']/form/select[1]").send_keys(contact.birth_day)
         wd.find_element_by_xpath("//div[@id='content']/form/select[2]").send_keys(contact.birth_month)
         wd.find_element_by_name("byear").clear()
@@ -33,13 +32,38 @@ class ContactHelper:
 
 
 
-    #def delete_first_contact(self):
-       # wd = self.app.wd
-        #wd.find_element_by_link_text("home").click()
-        #wd.find_element_by_name("selected[]").click()
-        #wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
-        #self.app.wait.until(EC.alert_is_present(),
-                                        #'Timed out waiting for PA creation ' +
-                                        #'confirmation popup to appear.')
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
+        self.app.wait.until(EC.alert_is_present(),
+                                        'Timed out waiting for PA creation ' +
+                                        'confirmation popup to appear.')
 
-        #wd.switch_to_alert().accept()
+        wd.switch_to_alert().accept()
+
+    def edit_first(self, contact):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        #wd.find_element_by_xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact.address)
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email)
+        wd.find_element_by_xpath("//div[@id='content']/form/select[1]").send_keys(contact.birth_day)
+        wd.find_element_by_xpath("//div[@id='content']/form/select[2]").send_keys(contact.birth_month)
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
+        wd.find_element_by_name("update").click()
+
+
+
+

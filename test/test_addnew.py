@@ -4,12 +4,12 @@ from model.contact import Contact
 from model.group import Group
 
 
-def test_test(app):
+def test_create_group(app):
     app.session.login(username="admin", password="secret")
     app.group.create(Group(name="fghj", header="jjhgf", footer="gfghk"))
     app.session.logout()
 
-def test_test2(app):
+def test_create_empty_group(app):
     app.session.login(username="admin", password="secret")
     app.group.create(Group(name=" ", header=" ", footer=" "))
     app.session.logout()
