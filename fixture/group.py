@@ -5,7 +5,7 @@ class GroupHelper:
 
     def open_group_page(self):
         wd = self.app.wd
-        self.app.wait.until(lambda driver: driver.find_element_by_link_text('groups'))
+        #self.app.wait.until(lambda driver: driver.find_element_by_link_text('groups'))
         wd.find_element_by_link_text("groups").click()
 
     def create(self, group):
