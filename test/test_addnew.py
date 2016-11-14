@@ -5,7 +5,7 @@ from model.group import Group
 
 
 def test_create_group(app):
-    app.group.create(Group(name="fghj", header="jjhgf", footer="gfghk"))
+    app.group.create(Group(name="Group_1", header="class", footer="zzz"))
 
 def test_create_empty_group(app):
     app.group.create(Group(name=" ", header=" ", footer=" "))
