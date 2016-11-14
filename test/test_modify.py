@@ -1,23 +1,17 @@
-from model.contact import Contact
+#from model.contact import Contact
 from model.group import Group
 
 
 #Меняем все свойства первой группы
 def test_edit_group(app):
-    app.session.login(username="admin", password="secret")
     app.group.edit_first(Group(name="cat", header="big_cat", footer="little_cat"))
-    app.session.logout()
 
 #Меняем часть свойств группы
 def test_modify_group_name(app):
-    app.session.login(username="admin", password="secret")
     app.group.modify_first(Group(name="dog"))
-    app.session.logout()
 
 def test_modify_group_header(app):
-    app.session.login(username="admin", password="secret")
     app.group.modify_first(Group(header="little_dog"))
-    app.session.logout()
 
 #Меняем все свойства первого контакта
 #def test_edit_contact(app):
