@@ -10,7 +10,8 @@ class ContactHelper:
         #self.app.wait.until(lambda driver: driver.find_element_by_link_text('add new'))
         wd.find_element_by_link_text("add new").click()
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.app.wd
         wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
@@ -33,17 +34,16 @@ class ContactHelper:
         wd.find_element_by_name("submit").click()
         #self.app.wait.until(lambda driver: driver.find_element_by_name('searchstring'))
 
-    #def fill_contact_form(self, contact):
-        #wd = self.app.wd
-        #self.change_field_value("firstname", contact.firstname)
-        #self.change_field_value("lastname", contact.lastname)
-        #self.change_field_value("address", contact.address)
-        #self.change_field_value("mobile", contact.mobile)
-        #self.change_field_value("email", contact.email)
-        #self.change_field_value("byear", contact.byear)
-
-        #wd.find_element_by_xpath("//div[@id='content']/form/select[1]").send_keys(contact.birth_day)
-        #wd.find_element_by_xpath("//div[@id='content']/form/select[2]").send_keys(contact.birth_month)
+    def fill_contact_form(self, contact):
+        wd = self.app.wd
+        self.change_field_value("firstname", contact.firstname)
+        self.change_field_value("lastname", contact.lastname)
+        self.change_field_value("address", contact.address)
+        self.change_field_value("mobile", contact.mobile)
+        self.change_field_value("email", contact.email)
+        self.change_form_value("//div[@id='content']/form/select[1]", contact.birth_day)
+        self.change_form_value("//div[@id='content']/form/select[2]", contact.birth_month)
+        self.change_field_value("byear", contact.birth_year)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -51,6 +51,12 @@ class ContactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
+
+    def change_form_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_xpath(field_name).send_keys(text)
+
 
     def click_img_change_contact(self):
         wd = self.app.wd
@@ -64,21 +70,10 @@ class ContactHelper:
         # self.app.wait.until(EC.alert_is_present(), 'Timed out waiting for PA creation ' +'confirmation popup to appear.')
         wd.switch_to_alert().accept()
 
-    #def edit_first(self, contact):
-        #wd = self.app.wd
-        #self.open_home_page(wd)
-        #self.click_img_change_contact()
-        #self.fill_contact_form(contact)
-        #wd.find_element_by_name("update").click()
-
-   # def modify_first(self, new_contact_data):
-        #wd = self.app.wd
-        #self.open_home_page()
-        #self.click_img_change_contact()
-        #self.fill_contact_form(new_contact_data)
-        #wd.find_element_by_name("update").click()
-
-
-
-
+    def edit_first(self, new_contact_data):
+        wd = self.app.wd
+        self.open_home_page()
+        self.click_img_change_contact()
+        self.fill_contact_form(new_contact_data)
+        wd.find_element_by_name("update").click()
 

@@ -9,8 +9,8 @@ class Application:
 
     def __init__(self):
         self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
-        self.wait = ui.WebDriverWait(self.wd, 10)
+        self.wd.implicitly_wait(10)
+        #self.wait = ui.WebDriverWait(self.wd, 10)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
