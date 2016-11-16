@@ -23,8 +23,10 @@ def test_edit_group_header(app):
 #Меняем все свойства первого контакта
 def test_edit_contact(app):
     if app.contact.count() == 0:
-        app.contact.create(Contact(firstname="test"))
-    app.contact.edit_first(Contact(firstname="Valya"))
+        app.contact.create(Contact(firstname="Katya"))
+    app.contact.edit_first(Contact(firstname="Valya", lastname = "Petrova", address = "Minsk",
+                 mobile = "123456", email = "volozhin@gmail.com", birth_day = "7",
+                 birth_month = "11", birth_year = "2000"))
 
 #Меняем часть свойств первого контакта
 def test_edit_contact_birthday(app):

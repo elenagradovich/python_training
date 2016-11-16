@@ -5,8 +5,9 @@ class GroupHelper:
 
     def open_group_page(self):
         wd = self.app.wd
-        #self.app.wait.until(lambda driver: driver.find_element_by_link_text('groups'))
-        wd.find_element_by_link_text("groups").click()
+        if not(wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
+        # self.app.wait.until(lambda driver: driver.find_element_by_link_text('groups'))
+            wd.find_element_by_link_text("groups").click()
 
     def select_first_group(self):
         wd = self.app.wd
