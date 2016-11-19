@@ -21,4 +21,4 @@ class Point:
 
     #Вывод в удобной форме
     def __repr__(self):
-        return "Point (%s, %s)"%(self.x, self.y) 
+        return "Point (%s, %s)"%(self.x, self.y)
