@@ -11,8 +11,14 @@ class Point:
         dy = p2.y - self.y
         return sqrt(dx*dx + dy*dy)
 
+    #Сравнение
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
 
-    def __lt__(self, other): # сортировка по возрастанию
+    #Сортировка по возрастанию
+    def __lt__(self, other):
         return self.y < other.y
+
+    #Вывод в удобной форме
+    def __repr__(self):
+        return "Point (%s, %s)"%(self.x, self.y) 
