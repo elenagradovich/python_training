@@ -18,7 +18,7 @@ from geom2d.point import *
 #l2 = list(map(lambda p: Point(p.x, -p.y), l))
 #l2 = list(filter(lambda p: p.x>0, l)) #фильтр на положительные координаты
 l = list(map(lambda i: Point(i, i*i), range(-5, 6)))
-l2 = list(filter(lambda p: p.x%2 ==0, l)) #четные координаты
+l2 = list(filter(lambda p: p.x%2 == 0, l)) #четные координаты
 
 
 print (l)

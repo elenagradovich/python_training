@@ -1,4 +1,5 @@
 #from selenium.webdriver.support import expected_conditions as EC
+from model.contact import Contact
 
 class ContactHelper:
 
@@ -83,4 +84,17 @@ class ContactHelper:
         self.click_img_change_contact()
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
+
+    @property
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_home_page()
+        contacts = []
+        for row in wd.find_elements_by_name("entry"):# Cписок строк с информацией о контактах
+            cells = row.find_elements_by_tag_name("td")#Cписок ячеек для каждой строки
+            id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+            last_name = cells[1].text
+            first_name = cells[2].text
+            contacts.append(Contact(id=id, lastname=last_name, firstname=first_name))
+        return contacts
 
