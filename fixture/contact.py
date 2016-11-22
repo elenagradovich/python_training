@@ -85,7 +85,6 @@ class ContactHelper:
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
 
-    @property
     def get_contact_list(self):
         wd = self.app.wd
         self.open_home_page()
@@ -97,4 +96,7 @@ class ContactHelper:
             first_name = cells[2].text
             contacts.append(Contact(id=id, lastname=last_name, firstname=first_name))
         return contacts
+
+
+
 
