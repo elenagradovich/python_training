@@ -9,7 +9,7 @@ def test_delete_first_group(app):
     app.group.delete_first_group()
     new_groups = app.group.get_group_list()  # Новый список групп
     assert len(old_groups) - 1 == len(new_groups)  # проверка в тестах с помощью assert должна быть истина, длина элементов списка
-    old_groups[0:1] = []
+    old_groups[0:1] = []#удаление 1го элемента списка
     assert old_groups == new_groups
 
 
