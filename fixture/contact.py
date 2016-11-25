@@ -67,23 +67,29 @@ class ContactHelper:
             wd.find_element_by_xpath(field_name).send_keys(text)
 
 
-    def click_img_change_contact(self):
+    def click_img_change_contact(self, index):
         wd = self.app.wd
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index)).click()
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)# Реализация одного метода через другой
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
         # self.app.wait.until(EC.alert_is_present(), 'Timed out waiting for PA creation ' +'confirmation popup to appear.')
         wd.switch_to_alert().accept()
         self.contact_cache = None
 
     def edit_first(self, new_contact_data):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self,index, new_contact_data):
         wd = self.app.wd
         self.open_home_page()
-        self.click_img_change_contact()
+        self.click_img_change_contact(index)
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
         self.contact_cache = None
