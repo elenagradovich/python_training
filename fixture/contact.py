@@ -69,7 +69,7 @@ class ContactHelper:
 
     def click_img_change_contact(self, index):
         wd = self.app.wd
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index)).click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index+2)).click()
 
     def delete_first_contact(self):
         self.delete_contact_by_index(0)# Реализация одного метода через другой
