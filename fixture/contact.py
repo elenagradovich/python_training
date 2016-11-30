@@ -1,5 +1,6 @@
 #from selenium.webdriver.support import expected_conditions as EC
 from model.contact import Contact
+import re#Модуль для работы с регулярными выражениями для поиска текстана странице
 
 class ContactHelper:
 
@@ -66,11 +67,6 @@ class ContactHelper:
         if text is not None:
             wd.find_element_by_xpath(field_name).send_keys(text)
 
-
-    def click_img_change_contact(self, index):
-        wd = self.app.wd
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index+2)).click()
-
     def delete_first_contact(self):
         self.delete_contact_by_index(0)# Реализация одного метода через другой
 
@@ -89,7 +85,7 @@ class ContactHelper:
     def edit_contact_by_index(self,index, new_contact_data):
         wd = self.app.wd
         self.open_home_page()
-        self.click_img_change_contact(index)
+        self.open_contact_to_edit_by_index(index)
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
         self.contact_cache = None
@@ -106,8 +102,55 @@ class ContactHelper:
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
                 last_name = cells[1].text
                 first_name = cells[2].text
-                self.contact_cache.append(Contact(id=id, lastname=last_name, firstname=first_name))
+                all_phones = cells[5].text.splitlines()
+                self.contact_cache.append(Contact(id=id, lastname=last_name, firstname=first_name,
+                                                  homephone=all_phones[0], mobile=all_phones[1],
+                                                  workphone=all_phones[2]))
         return list(self.contact_cache)
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        # wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index+2)).click()
+        self.open_home_page()
+        row = wd.find_elements_by_name('entry')[index]#находим строку таблицы по индексу, содержащую инфо о контактах
+        cell = row.find_elements_by_tag_name('td')[7]#находим нужную ячейку с img for edit по заданному значению[]
+        cell.find_element_by_tag_name('a').click()  #внутри ячейки находим ссылку и click
+
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.open_home_page()
+        row = wd.find_elements_by_name('entry')[index]  # находим строку таблицы по индексу, содержащую инфо о контактах
+        cell = row.find_elements_by_tag_name('td')[6]  # находим нужную ячейку с img for details по заданному значению[]
+        cell.find_element_by_tag_name('a').click()  # внутри ячейки находим ссылку и click
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        id = wd.find_element_by_name('id').get_attribute('value')
+        firstname = wd.find_element_by_name('lastname').get_attribute('value')
+        lastname = wd.find_element_by_name('firstname').get_attribute('value')
+        homephone = wd.find_element_by_name('home').get_attribute('value')
+        mobile = wd.find_element_by_name('mobile').get_attribute('value')
+        workphone = wd.find_element_by_name('work').get_attribute('value')
+        return Contact(id=id, firstname=firstname, lastname= lastname, homephone=homephone,
+                       mobile= mobile, workphone=workphone)#Название параметра = название локальной переменной
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id('content').text
+        homephone = re.search('H: (.*)', text).group(1)
+        mobile = re.search('M: (.*)', text).group(1)
+        workphone = re.search('W: (.*)', text).group(1)
+        return Contact(homephone=homephone, mobile=mobile, workphone=workphone)  # Название параметра = название локальной переменной
+
+
+
+
+
+
+
+
 
 
 

@@ -15,7 +15,6 @@ def test_edit_group(app):
     assert len(old_groups) == len(new_groups)  # проверкав тестах с помощью assert должна быть истина(длина списка)
     old_groups[index] = group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
-    print(group)
 
 
 # #Меняем часть свойств группы
@@ -60,7 +59,7 @@ def test_edit_contact(app):
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
     old_contacts[index] = contact
-    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(old_contacts, key=Contact.id_or_max)
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
 
 #Меняем часть свойств первого контакта
