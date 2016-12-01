@@ -100,11 +100,14 @@ class ContactHelper:
             for row in wd.find_elements_by_name("entry"):# Cписок строк с информацией о контактах
                 cells = row.find_elements_by_tag_name("td")#Cписок ячеек для каждой строки
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
-                last_name = cells[1].text
-                first_name = cells[2].text
+                lastname = cells[1].text
+                firstname = cells[2].text
+                address = cells[3].text
+                all_emails = cells[4].text
                 #all_phones = cells[5].text.splitlines()#получение списка из ячейки с телефонами
                 all_phones = cells[5].text#получение содержимого всей ячейки с телефонами
-                self.contact_cache.append(Contact(id=id, lastname=last_name, firstname=first_name,
+                self.contact_cache.append(Contact(id=id, lastname=lastname, firstname=firstname,
+                                                  address= address, all_emails_from_home_page = all_emails,
                                                   all_phones_from_home_page=all_phones))
                             #homephone=all_phones[0], mobile=all_phones[1],workphone=all_phones[2]
 
@@ -125,17 +128,6 @@ class ContactHelper:
         cell = row.find_elements_by_tag_name('td')[6]  # находим нужную ячейку с img for details по заданному значению[]
         cell.find_element_by_tag_name('a').click()  # внутри ячейки находим ссылку и click
 
-    def get_contact_info_from_edit_page(self, index):
-        wd = self.app.wd
-        self.open_contact_to_edit_by_index(index)
-        id = wd.find_element_by_name('id').get_attribute('value')
-        firstname = wd.find_element_by_name('lastname').get_attribute('value')
-        lastname = wd.find_element_by_name('firstname').get_attribute('value')
-        homephone = wd.find_element_by_name('home').get_attribute('value')
-        mobile = wd.find_element_by_name('mobile').get_attribute('value')
-        workphone = wd.find_element_by_name('work').get_attribute('value')
-        return Contact(id=id, firstname=firstname, lastname=lastname, homephone=homephone,
-                       mobile=mobile, workphone=workphone)#Название параметра = название локальной переменной
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -145,6 +137,26 @@ class ContactHelper:
         mobile = re.search('M: (.*)', text).group(1)
         workphone = re.search('W: (.*)', text).group(1)
         return Contact(homephone=homephone, mobile=mobile, workphone=workphone)  # Название параметра = название локальной переменной
+
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        id = wd.find_element_by_name('id').get_attribute('value')
+        firstname = wd.find_element_by_name('lastname').get_attribute('value')
+        lastname = wd.find_element_by_name('firstname').get_attribute('value')
+        address = wd.find_element_by_name('address').get_attribute('value')
+
+        email = wd.find_element_by_name('email').get_attribute('value')
+        email2 = wd.find_element_by_name('email2').get_attribute('value')
+
+        homephone = wd.find_element_by_name('home').get_attribute('value')
+        mobile = wd.find_element_by_name('mobile').get_attribute('value')
+        workphone = wd.find_element_by_name('work').get_attribute('value')
+        return Contact(id=id, firstname=firstname, lastname=lastname, homephone=homephone,
+                       mobile=mobile, workphone=workphone, address=address,
+                       email=email, email2=email2)#Название параметра = название локальной переменной
+
 
 
 
