@@ -102,10 +102,12 @@ class ContactHelper:
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
                 last_name = cells[1].text
                 first_name = cells[2].text
-                all_phones = cells[5].text.splitlines()
+                #all_phones = cells[5].text.splitlines()#получение списка из ячейки с телефонами
+                all_phones = cells[5].text#получение содержимого всей ячейки с телефонами
                 self.contact_cache.append(Contact(id=id, lastname=last_name, firstname=first_name,
-                                                  homephone=all_phones[0], mobile=all_phones[1],
-                                                  workphone=all_phones[2]))
+                                                  all_phones_from_home_page=all_phones))
+                            #homephone=all_phones[0], mobile=all_phones[1],workphone=all_phones[2]
+
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -132,8 +134,8 @@ class ContactHelper:
         homephone = wd.find_element_by_name('home').get_attribute('value')
         mobile = wd.find_element_by_name('mobile').get_attribute('value')
         workphone = wd.find_element_by_name('work').get_attribute('value')
-        return Contact(id=id, firstname=firstname, lastname= lastname, homephone=homephone,
-                       mobile= mobile, workphone=workphone)#Название параметра = название локальной переменной
+        return Contact(id=id, firstname=firstname, lastname=lastname, homephone=homephone,
+                       mobile=mobile, workphone=workphone)#Название параметра = название локальной переменной
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
