@@ -143,8 +143,8 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
         id = wd.find_element_by_name('id').get_attribute('value')
-        firstname = wd.find_element_by_name('lastname').get_attribute('value')
-        lastname = wd.find_element_by_name('firstname').get_attribute('value')
+        firstname = wd.find_element_by_name('firstname').get_attribute('value')
+        lastname = wd.find_element_by_name('lastname').get_attribute('value')
         address = wd.find_element_by_name('address').get_attribute('value')
 
         email = wd.find_element_by_name('email').get_attribute('value')

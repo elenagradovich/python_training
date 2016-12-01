@@ -29,8 +29,13 @@ class Contact:
         self.all_phones_from_home_page=all_phones_from_home_page
 
     def __repr__(self):
-        return '%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
-                                      self.email,self.homephone, self.mobile, self.workphone)
+        return '%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
+                                      self.email, self.email2, self.homephone, self.mobile, self.workphone,
+                                      self.all_emails_from_home_page, self.all_phones_from_home_page)
+
+    # def __repr__(self):
+    #     return '%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
+    #                                   self.all_emails_from_home_page,self.all_phones_from_home_page)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id)and self.lastname == other.lastname and self.firstname==other.firstname
