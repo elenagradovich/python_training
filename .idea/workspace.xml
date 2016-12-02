@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e76be5b-97f1-441e-a512-24a56b8b3f9a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fixture/contact.py" afterPath="$PROJECT_DIR$/fixture/contact.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/contact.py" afterPath="$PROJECT_DIR$/model/contact.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_compare_contacts.py" afterPath="$PROJECT_DIR$/test/test_compare_contacts.py" />
     </list>
     <ignored path="python_training.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="contact.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/contact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="338">
+              <caret line="34" column="0" selection-start-line="30" selection-start-column="4" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -43,36 +42,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_compare_contacts.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_compare_contacts.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_compare_contacts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="482">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="python.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/python.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-              <folding>
-                <marker date="1479069697073" expanded="true" signature="43000:43011" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pluggy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/vendored_packages/pluggy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -135,16 +112,16 @@
         <option value="$PROJECT_DIR$/test/test_contact_data_compare.py" />
         <option value="$PROJECT_DIR$/test/test_phones.py" />
         <option value="$PROJECT_DIR$/test/test_compare.py" />
-        <option value="$PROJECT_DIR$/test/test_compare_contacts.py" />
         <option value="$PROJECT_DIR$/model/contact.py" />
         <option value="$PROJECT_DIR$/fixture/contact.py" />
+        <option value="$PROJECT_DIR$/test/test_compare_contacts.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1" />
     <option name="y" value="31" />
-    <option name="width" value="1006" />
+    <option name="width" value="1340" />
     <option name="height" value="979" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -539,21 +516,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_in_test_compare_data_of_contacts - 2016.12.02 at 02h 21m 48s.xml">
-      <configuration name="py.test in test_compare_data_of_contacts" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_compare_data_of_contacts - 2016.12.02 at 02h 26m 09s.xml">
-      <configuration name="py.test in test_compare_data_of_contacts" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_compare_data_of_contacts - 2016.12.02 at 02h 27m 54s.xml">
-      <configuration name="py.test in test_compare_data_of_contacts" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 02h 28m 51s.xml">
-      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 02h 29m 08s.xml">
-      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 02h 29m 23s.xml">
       <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
     </history-entry>
@@ -569,22 +531,37 @@
     <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 02h 57m 49s.xml">
       <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 03h 01m 13s.xml">
+      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 03h 03m 46s.xml">
+      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 13h 35m 14s.xml">
+      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 13h 40m 40s.xml">
+      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_compare_data_of_contacts_by_index - 2016.12.02 at 21h 44m 44s.xml">
+      <configuration name="py.test in test_compare_data_of_contacts_by_index" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="31" width="1006" height="979" extended-state="0" />
-    <editor active="false" />
+    <frame x="1" y="31" width="1340" height="979" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2854251" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21331316" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779098" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33699232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3361045" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48456058" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48456058" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1051,14 +1028,6 @@
     <entry file="file://$PROJECT_DIR$/create_contact.py" />
     <entry file="file://$PROJECT_DIR$/fixture/conftest.py" />
     <entry file="file://$PROJECT_DIR$/icon.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/pytestrunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/geckodriver.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1070,14 +1039,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,14 +1217,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_edit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1290,14 +1243,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/contact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_phones.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -1306,10 +1251,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/vendored_packages/pluggy.py">
+    <entry file="file://$PROJECT_DIR$/model/contact.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+        <state relative-caret-position="338">
+          <caret line="34" column="0" selection-start-line="30" selection-start-column="4" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1324,22 +1269,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_compare_contacts.py">
+    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="353">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/pytestrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/vendored_packages/pluggy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="744" column="0" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/_pytest/python.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="159">
+          <caret line="1555" column="0" selection-start-line="1555" selection-start-column="0" selection-end-line="1555" selection-end-column="0" />
           <folding>
             <marker date="1479069697073" expanded="true" signature="43000:43011" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_compare_contacts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
