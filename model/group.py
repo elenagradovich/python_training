@@ -9,8 +9,8 @@ class Group:
         self.id = id
 
 
-    def __repr__(self):
-        return "%s:%s" % (self.id, self.name)
+    def __repr__(self): #инфо для отчета
+        return "%s:%s:%s:%s" % (self.id, self.name, self.header, self.footer)
 
     #сравнение не по физическому расположению, а логически по смыслу
     def __eq__(self, other):

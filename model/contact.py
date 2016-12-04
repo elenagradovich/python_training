@@ -16,9 +16,9 @@ class Contact:
         self.homephone = homephone
         self.mobile = mobile
         self.workphone = workphone
-        self.all_phones_from_home_page = all_phones_from_home_page
+        #self.all_phones_from_home_page = all_phones_from_home_page
 
-        self.all_emails_from_home_page = all_emails_from_home_page
+        #self.all_emails_from_home_page = all_emails_from_home_page
         self.email = email
         self.email2 = email2
 
@@ -26,12 +26,10 @@ class Contact:
         self.birth_month = birth_month
         self.birth_year = birth_year
 
-        self.all_phones_from_home_page=all_phones_from_home_page
-
     def __repr__(self):
-        return '%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
-                                      self.email, self.email2, self.homephone, self.mobile, self.workphone,
-                                      self.all_emails_from_home_page, self.all_phones_from_home_page)
+        return '%s:%s:%s:%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
+                                      self.homephone, self.mobile, self.workphone, self.email, self.email2)
+                                      #self.all_emails_from_home_page, self.all_phones_from_home_page)
 
     # def __repr__(self):
     #     return '%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,

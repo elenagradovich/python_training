@@ -2,6 +2,7 @@
 from model.contact import Contact
 import re#Модуль для работы с регулярными выражениями для поиска текстана странице
 
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -23,6 +24,7 @@ class ContactHelper:
         self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+
     def create(self, contact):
         wd = self.app.wd
         self.open_contact_page()
@@ -43,6 +45,32 @@ class ContactHelper:
         wd.find_element_by_name("submit").click()
         self.contact_cache = None
         #self.app.wait.until(lambda driver: driver.find_element_by_name('searchstring'))
+
+    def create_contact(self, contact):
+        wd = self.app.wd
+        self.open_contact_page()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact.address)
+        wd.find_element_by_name("home").clear()
+        wd.find_element_by_name("home").send_keys(contact.homephone)
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("work").clear()
+        wd.find_element_by_name("work").send_keys(contact.workphone)
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email)
+        wd.find_element_by_name("email2").clear()
+        wd.find_element_by_name("email2").send_keys(contact.email2)
+        wd.find_element_by_xpath(".//*[@id='content']/form[1]/select[1]").send_keys(contact.birth_day)
+        wd.find_element_by_xpath(".//*[@id='content']/form[1]/select[2]").send_keys(contact.birth_month)
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
+        wd.find_element_by_name("submit").click()
+        self.contact_cache = None
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
@@ -76,7 +104,7 @@ class ContactHelper:
         wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
         # self.app.wait.until(EC.alert_is_present(), 'Timed out waiting for PA creation ' +'confirmation popup to appear.')
-        wd.switch_to_alert().accept()
+        wd.switch_to_alert().accept()#перейти на всплывающее окно, нажать ОК
         self.contact_cache = None
 
     def edit_first(self, new_contact_data):
