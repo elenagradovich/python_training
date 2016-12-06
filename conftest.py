@@ -8,14 +8,13 @@ def app(request):
     global fixture
     browser = request.config.getoption("--browser")
     base_url = request.config.getoption("--baseUrl")
-
     #Пользователь создает новую фикстуру
     if fixture is None:
         fixture = Application(browser=browser, base_url=base_url)
     else:
         #Переинициализация фикстуры, с ней что-то случилось и нужно заново создать
-        if not fixture.is_valid(browser=browser, base_url=base_url):
-            fixture = Application()
+        if not fixture.is_valid():
+            fixture = Application(browser=browser, base_url=base_url)
     fixture.session.ensure_login(username="admin", password="secret")
     return fixture
 
