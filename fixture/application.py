@@ -12,7 +12,7 @@ class Application:
             self.wd = webdriver.Firefox()
         elif browser =="chrome":
             self.wd = webdriver.Chrome()
-        elif browser =="ei":
+        elif browser =="ie":
             self.wd = webdriver.Ie()
         else:
             raise ValueError("Unrecognaized browser %s" % browser)#выброс исключения с помощью raise и перехват с помощью фреймворка
@@ -33,8 +33,6 @@ class Application:
     def home_page(self):
         wd = self.wd
         wd.get(self.base_url)
-
-        
 
     def destroy(self):
         self.wd.quit()

@@ -14,15 +14,15 @@ def test_delete_some_group(app):
     assert old_groups == new_groups
 
 
-def test_delete_some_contact(app):
-    if app.contact.count() == 0:
-        app.contact.create(Contact(firstname="Katya", lastname = "Ivanova", address = "Gomel",
-                 mobile = "111111", email = "qqq@gmail.com", birth_day = "5",
-                 birth_month = "2", birth_year = "2008"))
-    old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
-    app.contact.delete_contact_by_index(index)
-    new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) - 1 == len(new_contacts)
-    old_contacts[index:index+1] = []
-    assert old_contacts == new_contacts
+# def test_delete_some_contact(app):
+#     if app.contact.count() == 0:
+#         app.contact.create(Contact(firstname="Katya", lastname = "Ivanova", address = "Gomel",
+#                  mobile = "111111", email = "qqq@gmail.com", birth_day = "5",
+#                  birth_month = "2", birth_year = "2008"))
+#     old_contacts = app.contact.get_contact_list()
+#     index = randrange(len(old_contacts))
+#     app.contact.delete_contact_by_index(index)
+#     new_contacts = app.contact.get_contact_list()
+#     assert len(old_contacts) - 1 == len(new_contacts)
+#     old_contacts[index:index+1] = []
+#     assert old_contacts == new_contacts
