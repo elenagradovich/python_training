@@ -1,6 +1,7 @@
 import pytest
 from fixture.application import Application
 import json
+import os.path
 
 fixture = None
 target = None
@@ -10,10 +11,13 @@ def app(request):
     global fixture
     global target
     browser = request.config.getoption("--browser")
+   #Путь к текущему файлу
+    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
     if target is None:
+        config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
         #Чтение файла конфигурации
-        with open(request.config.getoption("--target")) as config_file:
-            target = json.load(config_file)
+        with open(config_file) as f:#f объект кот.указывает на открытый файл
+            target = json.load(f)
     #Пользователь создает новую фикстуру
     if fixture is None or not fixture.is_valid():#Переинициализация фикстуры, с ней что-то случилось и нужно заново создать
         fixture = Application(browser=browser, base_url=target['baseUrl'])
