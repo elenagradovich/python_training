@@ -10,9 +10,8 @@ target = None
 def app(request):
     global fixture
     global target
-    browser = request.config.getoption("--browser")
+    browser = request.config.getoption("--browser")#получаем из def pytest_addoption(parser)
    #Путь к текущему файлу
-    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
     if target is None:
         config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
         #Чтение файла конфигурации
@@ -32,7 +31,7 @@ def stop(request):
     request.addfinalizer(fin)
     return fixture
 
-def pytest_addoption(parser):
+def pytest_addoption(parser):#Передается парсер коммандной строки у которого есть метод addoption
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--target", action="store", default="target.json")
 
