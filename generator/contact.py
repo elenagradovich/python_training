@@ -8,7 +8,7 @@ import getopt # для чтения данных из коммандной ст�
 import sys #для получения доступа к опциям коммандной строки
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "n:f:", ["number of groups", "file" ])#n:задает количество опций из коммандной строки#f:задает файл, куда это все помещается[] подсказки
+    opts, args = getopt.getopt(sys.argv[1:], "n:f:", ["number of contacts", "file" ])#n:задает количество опций из коммандной строки#f:задает файл, куда это все помещается[] подсказки
 except getopt.GetoptError as err:
     getopt.usage()
     sys.exit(2)
@@ -30,7 +30,7 @@ def random_digit(prefix, maxlen): #генератор случайных чис�
     return  prefix + "".join([random.choice(symbols_digit) for i in range(random.randrange(maxlen))])
 
 
-testdata_c = [Contact(lastname = "", firstname = "", address = "",
+testdata = [Contact(lastname = "", firstname = "", address = "",
             birth_day = "-", birth_month = "-", birth_year ="",
             homephone = "", mobile = "", workphone = "", email = "", email2="")] + [
     Contact(lastname = random_string("lastname", 20),
@@ -46,4 +46,4 @@ testdata_c = [Contact(lastname = "", firstname = "", address = "",
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", f)#склеиваем путь к генератору, подъем на 1 уровень вверх и путь к файлу, указанному в виде параметра
 
 with open(file, "w") as out:
-    out.write(json.dumps(testdata_c, default=lambda x: x.__dict__, indent=2))  # dumps превращает некоторую структуру данных в строку формата Json
+    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))  # dumps превращает некоторую структуру данных в строку формата Json

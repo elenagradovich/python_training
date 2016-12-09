@@ -1,7 +1,7 @@
 from model.contact import Contact
 
 
-constant_c = [
+testdata = [
     Contact(lastname = "lastname1", firstname = "firstname1", address = "address1",
             birth_day = "2", birth_month = "12", birth_year ="2000",
             homephone = "homephone1", mobile = "mobile1", workphone = "workphone1",
