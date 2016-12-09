@@ -9,9 +9,10 @@ target = None
 @pytest.fixture
 def app(request):
     global fixture
-    global target
+    global target#Ссылка на конфигурационный файл
     browser = request.config.getoption("--browser")#получаем из def pytest_addoption(parser)
    #Путь к текущему файлу
+
     if target is None:
         config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
         #Чтение файла конфигурации

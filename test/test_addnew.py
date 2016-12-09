@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
 from model.contact import Contact
-from data.add_group import constant as testdata#временно используются фиксир знач-нияво время отладкт
-from data.add_contact import testdata_contact
+from data.add_group import constant_g as testdata_g #временно используются фиксир знач-нияво время отладки
+from data.add_contact import constant_c as testdata_c
 import pytest
 
 
-@pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])#пометка для тестового фреймворка, чтобы запускал тест
+@pytest.mark.parametrize("group", testdata_c, ids=[repr(x) for x in testdata_g])#пометка для тестового фреймворка, чтобы запускал тест
 def test_create_group(app, group):
     old_groups = app.group.get_group_list()#Старый список групп
     app.group.create(group)
@@ -17,7 +17,7 @@ def test_create_group(app, group):
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)#сортируем список по id и сравниваем
 
 
-@pytest.mark.parametrize("contact", testdata_contact, ids=[repr(x) for x in testdata_contact])
+@pytest.mark.parametrize("contact", testdata_c, ids=[repr(x) for x in testdata_c])
 def test_create_contact(app, contact):
     old_contacts = app.contact.get_contact_list()
     app.contact.create_contact(contact)
