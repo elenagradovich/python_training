@@ -19,8 +19,8 @@ def test_create_group(app, json_groups):#data_groups ознает, что буд
 
 
 # @pytest.mark.parametrize("contact", testdata_c, ids=[repr(x) for x in testdata_c])
-def test_create_contact(app, data_contacts):
-    contact = data_contacts
+def test_create_contact(app, json_contacts):
+    contact = json_contacts
     old_contacts = app.contact.get_contact_list()
     app.contact.create_contact(contact)
     assert len(old_contacts) + 1 == app.contact.count()

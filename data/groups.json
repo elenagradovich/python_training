@@ -1,20 +1,23 @@
 [
   {
+    "header": "",
     "footer": "",
-    "id": null,
     "name": "",
-    "header": ""
+    "id": null,
+    "py/object": "model.group.Group"
   },
   {
-    "footer": "footerJNo7PGg YVdVqx3sS",
+    "header": "headerk AUWmN28WcH",
+    "footer": "footerK2MPxfpk4o",
+    "name": "nameJAyn",
     "id": null,
-    "name": "nameZIbADOm",
-    "header": "header"
+    "py/object": "model.group.Group"
   },
   {
-    "footer": "footeru4fgeyQgZ bV",
+    "header": "headerLWKSpr",
+    "footer": "footero5MM71vAvNhM",
+    "name": "nameL",
     "id": null,
-    "name": "nameRD",
-    "header": "headeru5YTvkbF1g"
+    "py/object": "model.group.Group"
   }
 ]

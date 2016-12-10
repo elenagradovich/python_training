@@ -3,6 +3,7 @@ from fixture.application import Application
 import json
 import os.path
 import importlib
+import jsonpickle
 
 fixture = None
 target = None
@@ -38,6 +39,7 @@ def pytest_addoption(parser):#Передается парсер коммандн
     parser.addoption("--target", action="store", default="target.json")
 
 def pytest_generate_tests(metafunc): #metafunc -получение инфо о тестовой функции
+    #параметризация тестов путём "внедрения" тестовых данных в фикстуру при помощи hook-функции pytest_generate_tests
     for fixture in metafunc.fixturenames:
         if fixture.startswith("data_"):
             testdata = load_from_module(fixture[5:])
@@ -50,4 +52,5 @@ def load_from_module(module):
     return importlib.import_module("data.%s" % module).testdata
 
 def load_from_json(file):
-    pass
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.json" % file))as f:#
+        return jsonpickle.decode(f.read())
