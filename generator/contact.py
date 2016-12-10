@@ -3,7 +3,7 @@ import random
 import string
 import calendar
 import os.path
-import json
+import jsonpickle
 import getopt # для чтения данных из коммандной строки
 import sys #для получения доступа к опциям коммандной строки
 
@@ -46,4 +46,5 @@ testdata = [Contact(lastname = "", firstname = "", address = "",
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", f)#склеиваем путь к генератору, подъем на 1 уровень вверх и путь к файлу, указанному в виде параметра
 
 with open(file, "w") as out:
-    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))  # dumps превращает некоторую структуру данных в строку формата Json
+    jsonpickle.set_encoder_options("json", indent=2)
+    out.write(jsonpickle.encode(testdata))  # dumps превращает некоторую структуру данных в строку формата Json
