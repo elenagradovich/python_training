@@ -45,8 +45,6 @@ def db(request):
     request.addfinalizer(fin)
     return dbfixture
 
-
-
 @pytest.fixture(scope='session', autouse=True)
 def stop(request):
     def fin():
@@ -55,9 +53,14 @@ def stop(request):
     request.addfinalizer(fin)
     return fixture
 
+@pytest.fixture
+def check_ui(request):#через request доступ к опциям
+    return request.config.getoption("--check_ui")#Специальный флаг, если выставлен-проверка выполняется
+
 def pytest_addoption(parser):#Передается парсер коммандной строки у которого есть метод addoption
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--target", action="store", default="target.json")
+    parser.addoption("--check_ui", action="store_true")
 
 def pytest_generate_tests(metafunc): #metafunc -получение инфо о тестовой функции
     #параметризация тестов путём "внедрения" тестовых данных в фикстуру при помощи hook-функции pytest_generate_tests
