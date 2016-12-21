@@ -2,7 +2,7 @@ from random import randrange
 import re
 
 
-def test_compare_data_of_contacts_byww_index(app):
+def test_compare_data_of_contacts_by_index(app):
     index = randrange(app.contact.count())
     contact_from_home_page_by_index = app.contact.get_contact_list()[index]
     contact_from_edit_page_by_index = app.contact.get_contact_info_from_edit_page(index)
@@ -27,8 +27,10 @@ def merge_phones_like_on_home_page(contact):#склеивание с помощ�
                                      [contact.homephone, contact.mobile, contact.workphone]))))
 
 def merge_email_like_on_home_page(contact):#склеивание с помощью перевода строки списка email
-    return "\n".join(filter(lambda x: x is not None,#отфильтровываются все пустые
-                                     [contact.email, contact.email2]))
+    return "\n".join(filter(lambda x: x != "",  # фильтрация пустых строк после очистки и склеивание
+                            map(lambda x: clear(x),  # очистка от лишних символов
+                                filter(lambda x: x is not None,  # отфильтровываются все пустые
+                                     [contact.email, contact.email2]))))
 
     #filter(lambda x: x!= "",#фильтрация пустых строк после очистки и склеивание
                         #  map(lambda x: clear(x),#очистка от лишних символов

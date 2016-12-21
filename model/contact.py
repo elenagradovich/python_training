@@ -27,9 +27,9 @@ class Contact:
         self.birth_year = birth_year
 
     def __repr__(self):
-        return '%s:%s:%s:%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,
+        return '%s:%s:%s:%s:%s:%s:%s:%s:%s' (self.id, self.lastname, self.firstname, self.address,
                                       self.homephone, self.mobile, self.workphone, self.email, self.email2)
-                                      #self.all_emails_from_home_page, self.all_phones_from_home_page)
+                                      #, self.all_emails_from_home_page, self.all_phones_from_home_page)
 
     # def __repr__(self):
     #     return '%s:%s:%s:%s:%s:%s' % (self.id, self.lastname, self.firstname, self.address,

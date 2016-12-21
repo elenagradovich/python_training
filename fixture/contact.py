@@ -107,6 +107,15 @@ class ContactHelper:
         wd.switch_to_alert().accept()#перейти на всплывающее окно, нажать ОК
         self.contact_cache = None
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
+        # self.app.wait.until(EC.alert_is_present(), 'Timed out waiting for PA creation ' +'confirmation popup to appear.')
+        wd.switch_to_alert().accept()#перейти на всплывающее окно, нажать ОК
+        self.contact_cache = None
+
     def edit_first(self, new_contact_data):
         self.edit_contact_by_index(0)
 
@@ -118,9 +127,18 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
+    def edit_contact_by_id(self,id, new_contact_data):
+        wd = self.app.wd
+        self.open_home_page()
+        self.open_contact_to_edit_by_id(id)
+        self.fill_contact_form(new_contact_data)
+        wd.find_element_by_name("update").click()
+        self.contact_cache = None
+  
+
     contact_cache = None
 
-    def get_contact_list(self):
+    def get_contact_list(self):#Загрузка контактов из пользовательского интерфейса
         if self.contact_cache is None:
             wd = self.app.wd
             self.open_home_page()
@@ -135,9 +153,10 @@ class ContactHelper:
                 #all_phones = cells[5].text.splitlines()#получение списка из ячейки с телефонами
                 all_phones = cells[5].text#получение содержимого всей ячейки с телефонами
                 self.contact_cache.append(Contact(id=id, lastname=lastname, firstname=firstname,
-                                                  address= address, all_emails_from_home_page = all_emails,
+                                                  address= address,
+                                                  all_emails_from_home_page=all_emails,
                                                   all_phones_from_home_page=all_phones))
-                            #homephone=all_phones[0], mobile=all_phones[1],workphone=all_phones[2]
+
 
         return list(self.contact_cache)
 
@@ -148,6 +167,19 @@ class ContactHelper:
         row = wd.find_elements_by_name('entry')[index]#находим строку таблицы по индексу, содержащую инфо о контактах
         cell = row.find_elements_by_tag_name('td')[7]#находим нужную ячейку с img for edit по заданному значению[]
         cell.find_element_by_tag_name('a').click()  #внутри ячейки находим ссылку и click
+
+    def open_contact_to_edit_by_id(self, id):
+        wd = self.app.wd
+        # wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % (index+2)).click()
+        self.open_home_page()
+        #row = wd.find_element_by_xpath(".//input[@id = '%s']/.." % id)
+        checkbox = wd.find_element_by_css_selector("input[value='%s']" % id)#по id находим нужный чекбокс нужного ряда
+        row = checkbox.find_element_by_xpath("./../..")#находим строку, в которой этот чекбокс находится с помощью
+                                                    # xpath ,переходом на уровень выше от td к tr
+        # row = wd.find_elements_by_name('entry')[index]#находим строку таблицы по индексу, содержащую инфо о контактах
+        cell = row.find_elements_by_tag_name('td')[7]#находим нужную ячейку с img for edit по заданному значению[]
+        cell.find_element_by_tag_name('a').click()  #внутри ячейки находим ссылку и click
+
 
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
