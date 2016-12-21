@@ -1,6 +1,6 @@
 from model.group import Group
 from model.contact import Contact
-import re
+from test.test_compare_contacts import merge_phones_like_on_home_page, merge_email_like_on_home_page
 
 #Внутренняя проверка на соответсвие данных из БД и сайта
 
@@ -24,21 +24,7 @@ def test_compare_contacts_ui_with_db(app, db):
         assert contacts_from_home_page[i].all_emails_from_home_page == merge_email_like_on_home_page(contacts_from_db[i])
 
 
-def clear(s):#Замена символов в  номерах телефонов, коткоторые мешают в сравнении
-    return re.sub("[() -]", "", s) #на homepage сохраняется только + , поэтому clear остальное для сравнения
-                                 #1.что заменяем, 2.на что заменяем,3.где заменяем
 
-def merge_phones_like_on_home_page(db):#склеивание с помощью перевода строки списка телефонов
-    return "\n".join(filter(lambda x: x!= "",#фильтрация пустых строк после очистки и склеивание
-                          map(lambda x: clear(x),#очистка от лишних символов
-                              filter(lambda x: x is not None,#отфильтровываются все пустые
-                                     [db.homephone, db.mobile, db.workphone]))))
-
-def merge_email_like_on_home_page(db):#склеивание с помощью перевода строки списка email
-    return "\n".join(filter(lambda x: x != "",  # фильтрация пустых строк после очистки и склеивание
-                            map(lambda x: clear(x),  # очистка от лишних символов
-                                filter(lambda x: x is not None,  # отфильтровываются все пустые
-                                     [db.email, db.email2]))))
 
 # def test_contact_list(app, db):
 #     ui_list = app.contact.get_contact_list()
