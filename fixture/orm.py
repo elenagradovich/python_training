@@ -46,7 +46,9 @@ class ORMFixture:
 
     def convert_contacts_to_model(self, contacts):#преобразование ORMобъекта, в объект типа Group
         def convert(contact):
-            return Contact(id=str(contact.id), firstname=contact.firstname,lastname=contact.lastname)
+            return Contact(id=str(contact.id), firstname=contact.firstname,lastname=contact.lastname,
+                           homephone=contact.home, mobile=contact.mobile,workphone=contact.work,
+                           email=contact.email,email2=contact.email2)
         return (list(map(convert,contacts)))
 
 

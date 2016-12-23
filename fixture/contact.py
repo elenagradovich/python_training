@@ -217,6 +217,12 @@ class ContactHelper:
                        mobile=mobile, workphone=workphone, address=address,
                        email=email, email2=email2)#Название параметра = название локальной переменной
 
+    def test_add_contact_to_group(self, name, id):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[4]/select").send_keys(name)
+        wd.find_elements_by_name("add").click()
 
 
 
