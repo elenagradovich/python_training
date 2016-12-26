@@ -22,6 +22,11 @@ class ORMFixture:
         id = PrimaryKey(int, column='id')
         lastname = Optional(str, column='lastname')
         firstname = Optional(str, column='firstname')
+        homephone = Optional(str, column='home')
+        mobile = Optional(str, column='mobile')
+        workphone = Optional(str, column='work')
+        email = Optional(str, column='email')
+        email2 = Optional(str, column='email2')
         deprecated = Optional(datetime, column='deprecated')
         groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column="group_id", reverse="contacts", lazy=True)
 
@@ -47,22 +52,23 @@ class ORMFixture:
     def convert_contacts_to_model(self, contacts):#преобразование ORMобъекта, в объект типа Group
         def convert(contact):
             return Contact(id=str(contact.id), firstname=contact.firstname,lastname=contact.lastname,
-                           homephone=contact.home, mobile=contact.mobile,workphone=contact.work,
-                           email=contact.email,email2=contact.email2)
+                           homephone=contact.homephone, mobile=contact.mobile, workphone=contact.workphone,
+                           email=contact.email, email2=contact.email2)
         return (list(map(convert,contacts)))
 
 
     @db_session  # пометка, что след блок кода выполняется в рамках этой сессии
     def get_contact_list(self):  # реализация функций, получающие списки объектов
         return self.convert_contacts_to_model\
-            (select(c for c in ORMFixture.ORMContact if c.deprecated is None))#if выбрать такие контакты которые None,нулевые даты преобразовываются в None
-                                                                              # извлечение всех контактов
+            (select(c for c in ORMFixture.ORMContact if c.deprecated is None))#if выбрать такие контакты которые None,нулевые даты
+                                                                              # преобразовываются в None извлечение всех контактов
 
     #метод получения контактов, входящих в группу
     @db_session
     def get_contacts_in_group(self, group):
-        orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]#выбираем группу сзаданным идентификатором, тк это список выбираем по индексу
-        return self.convert_contacts_to_model(orm_group.contacts)#преобразуем объекты типа ORM в model
+        orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]#выбираем группу сзаданным идентификатором,
+                                                                                       # тк это список выбираем по индексу
+        return self.convert_contacts_to_model(orm_group.contacts)#преобразуем объекты типа ORM в model, возвращаем список контактов
 
     #метод получения списка контактов, не входящих в заданную группу
     @db_session

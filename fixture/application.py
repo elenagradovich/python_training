@@ -17,7 +17,7 @@ class Application:
         else:
             raise ValueError("Unrecognaized browser %s" % browser)#выброс исключения с помощью raise и перехват с помощью фреймворка
         self.wd.implicitly_wait(10)
-        #self.wait = ui.WebDriverWait(self.wd, 10)
+        self.wait = ui.WebDriverWait(self.wd,120)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)

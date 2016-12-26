@@ -49,6 +49,7 @@ class ContactHelper:
     def create_contact(self, contact):
         wd = self.app.wd
         self.open_contact_page()
+        wd.find_element_by_name("submit")
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
         wd.find_element_by_name("lastname").clear()
@@ -70,6 +71,7 @@ class ContactHelper:
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact.birth_year)
         wd.find_element_by_name("submit").click()
+        wd.find_element_by_css_selector("input[value='Send e-Mail']")
         self.contact_cache = None
 
     def fill_contact_form(self, contact):
@@ -113,7 +115,9 @@ class ContactHelper:
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
         wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[2]/input").click()
         # self.app.wait.until(EC.alert_is_present(), 'Timed out waiting for PA creation ' +'confirmation popup to appear.')
+        wd.implicitly_wait(60)
         wd.switch_to_alert().accept()#перейти на всплывающее окно, нажать ОК
+        wd.find_element_by_link_text("home").click()
         self.contact_cache = None
 
     def edit_first(self, new_contact_data):
@@ -159,6 +163,9 @@ class ContactHelper:
 
 
         return list(self.contact_cache)
+
+
+
 
     def open_contact_to_edit_by_index(self, index):
         wd = self.app.wd
@@ -217,12 +224,58 @@ class ContactHelper:
                        mobile=mobile, workphone=workphone, address=address,
                        email=email, email2=email2)#Название параметра = название локальной переменной
 
-    def test_add_contact_to_group(self, name, id):
+
+    def find_group_by_name(self, group_name):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
-        wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[4]/select").send_keys(name)
-        wd.find_elements_by_name("add").click()
+        self.open_home_page()
+        wd.find_element_by_name("group").send_keys(group_name)
+        wd.find_element_by_name("group").send_keys("\n")
+        self.app.wait.until(lambda driver: driver.find_element_by_name("remove"))
+
+
+    def add_contact_to_group(self, group_name, contact_id):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_css_selector("input[id='%s']" % contact_id).click()
+        wd.implicitly_wait(60)
+        wd.find_element_by_xpath(".//*[@id='content']/form[2]/div[4]/select").send_keys(group_name)
+        wd.find_element_by_name("add").click()
+        self.app.wait.until(lambda driver: driver.find_element_by_class_name('msgbox'))
+
+
+
+    def delete_contact_from_the_group(self, contact_id, group_name):
+        wd = self.app.wd
+        self.find_group_by_name(group_name)
+        wd.find_element_by_css_selector("input[id='%s']" % contact_id).click()
+        wd.implicitly_wait(60)
+        wd.find_element_by_name("remove").click()
+        self.app.wait.until(lambda driver: driver.find_element_by_class_name('msgbox'))
+
+
+    def get_contact_list_in_group(self, group_name):
+        wd = self.app.wd
+        self.find_group_by_name(group_name)
+        contact_list = []
+        for row in wd.find_elements_by_name("entry"):  # Cписок строк с информацией о контактах
+            cells = row.find_elements_by_tag_name("td")  # Cписок ячеек для каждой строки
+            id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+            lastname = cells[1].text
+            firstname = cells[2].text
+            address = cells[3].text
+            all_emails = cells[4].text
+            # all_phones = cells[5].text.splitlines()#получение списка из ячейки с телефонами
+            all_phones = cells[5].text  # получение содержимого всей ячейки с телефонами
+            contact_list.append(Contact(id=id, lastname=lastname,
+                                firstname=firstname,address=address,
+                                  all_emails_from_home_page=all_emails,
+                                    all_phones_from_home_page=all_phones))
+        return contact_list
+
+
+
+
+
 
 
 

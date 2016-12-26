@@ -2,6 +2,8 @@ from model.group import Group
 from model.contact import Contact
 from random import randrange
 import random
+from fixture.orm import ORMFixture
+from test.test_compare_contacts import merge_phones_like_on_home_page, merge_email_like_on_home_page
 
 def test_delete_some_group(app, db, check_ui):
     if len(db.get_group_list()) == 0:  #if app.group.count() == 0:
@@ -42,3 +44,47 @@ def test_delete_some_contact(app, db, check_ui):
     if check_ui:#проверка вкл/выкл при запуске
         assert sorted(new_contacts, key=Contact.id_or_max) == \
                sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+
+
+def test_delete_contact_from_the_group(app, db, check_ui):
+    global contact
+    dbase = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
+    groups = db.get_group_list()
+    if len(groups) == 0:
+        app.group.create(Group(name="Dog", header="big_dog", footer="little_dog"))
+        groups = db.get_group_list()
+    group = random.choice(groups)
+    old_contacts_in_group = dbase.get_contacts_in_group(group)
+    if len(old_contacts_in_group) == 0:
+        contacts = db.get_contact_list()
+        if len(contacts) == 0:
+            app.contact.create(Contact(firstname="Katya", lastname="Ivanova", address="Gomel",
+                mobile="111111", email="qqq@gmail.com", birth_day="5",
+                birth_month="2", birth_year="2008"))
+            contacts = db.get_contact_list()
+        contact = random.choice(contacts)
+        app.contact.add_contact_to_group(contact_id=contact.id, group_name=group.name)
+        old_contacts_in_group = dbase.get_contacts_in_group(group)
+    app.contact.delete_contact_from_the_group(contact_id=contact.id, group_name=group.name)
+    new_contacts_in_group = dbase.get_contacts_in_group(group)
+    old_contacts_in_group.remove(contact)
+    old_contacts_in_group = sorted(old_contacts_in_group, key=Contact.id_or_max)
+    new_contacts_in_group = sorted(new_contacts_in_group, key=Contact.id_or_max)
+    assert old_contacts_in_group == new_contacts_in_group
+    if check_ui:  # проверка вкл/выкл при запуске.сортируем список по id и сравниваем
+        contacts_from_group_in_ui = app.contact.get_contact_list_in_group(group_name=group.name)
+        if len(new_contacts_in_group)!= 0 and len(contacts_from_group_in_ui)!= 0:
+            contacts_from_group_in_ui = sorted(contacts_from_group_in_ui,key=Group.id_or_max)
+            for i in range(0, len(contacts_from_group_in_ui)):
+                assert contacts_from_group_in_ui[i].id == new_contacts_in_group[i].id
+                assert contacts_from_group_in_ui[i].lastname == new_contacts_in_group[i].lastname
+                assert contacts_from_group_in_ui[i].firstname == new_contacts_in_group[i].firstname
+                assert contacts_from_group_in_ui[i].address == new_contacts_in_group[i].address
+                assert contacts_from_group_in_ui[i].all_phones_from_home_page ==\
+                       merge_phones_like_on_home_page(new_contacts_in_group[i])
+                assert contacts_from_group_in_ui[i].all_emails_from_home_page == \
+                       merge_email_like_on_home_page(new_contacts_in_group[i])
+        else:
+            return True
+
+
