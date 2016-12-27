@@ -50,19 +50,18 @@ def test_add_contact_to_group(app, db, check_ui):
     if len(groups) == 0:
         app.group.create(Group(name="Dog", header="big_dog", footer="little_dog"))
         groups = db.get_group_list()
-    contacts = db.get_contact_list()
+    group = random.choice(groups)
+    contacts = dbase.get_contacts_not_in_group(group)
     if len(contacts) == 0:
         app.contact.create(Contact(firstname="Katya", lastname = "Ivanova", address = "Gomel",
                  mobile = "111111", email = "qqq@gmail.com", birth_day = "5",
                  birth_month = "2", birth_year = "2008"))
-        contacts = db.get_contact_list()
-    group = random.choice(groups)
+        contacts = dbase.get_contacts_not_in_group(group)
     old_contacts = dbase.get_contacts_in_group(group)
     contact = random.choice(contacts)
     app.contact.add_contact_to_group(contact_id=contact.id, group_name=group.name)
     new_contacts_in_group = dbase.get_contacts_in_group(group)
-    if contact not in old_contacts:
-        old_contacts.append(contact)
+    old_contacts.append(contact)
     old_contacts = sorted(old_contacts, key=Contact.id_or_max)
     new_contacts_in_group = sorted(new_contacts_in_group, key=Contact.id_or_max)
     assert old_contacts == new_contacts_in_group
