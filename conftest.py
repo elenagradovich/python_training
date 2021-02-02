@@ -2,7 +2,7 @@ import pytest
 from fixture.application import Application
 import json
 import os.path
-new words plesssssss
+
 fixture = None
 target = None
 
